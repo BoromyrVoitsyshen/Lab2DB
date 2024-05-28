@@ -1,0 +1,21 @@
+﻿﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html>
+<body>
+    <div class="text-center">
+        <div class="bg"></div>
+
+        <div class="list">
+            <a class="list-item" href='@Url.Action("Index", "Genres")'><p class="text-lg-center">Жанри</p></a>
+            <a class="list-item" href='@Url.Action("Index", "Books")'><p class="text-lg-center">Книги</p></a>
+            <a class="list-item" href='@Url.Action("Index", "Authors")'><p class="text-lg-center">Автори</p></a>
+            <a class="list-item" href='@Url.Action("Index", "BorrowedBooks")'><p class="text-lg-center">Позичені книги</p></a>
+            <a class="list-item" href='@Url.Action("Index", "Publishers")'><p class="text-lg-center">Видавці</p></a>
+            <a class="list-item" href='@Url.Action("Index", "Readers")'><p class="text-lg-center">Читачі</p></a>
+            <a class="list-item" href='@Url.Action("Index", "Queries")'><p class="text-lg-center">Запити</p></a>
+        </div>
+    </div>
+</body>
+</html>

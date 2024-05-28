@@ -1,0 +1,35 @@
+﻿@using Domain.Entities;
+﻿@{
+    ViewData["Title"] = "QueryB2";
+}
+
+@model IEnumerable<Genre>
+
+
+@if (Model != null && Model.Any())
+{
+    <h2>Результат</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Жанр</th>
+                <th>Жанр</th>
+                <th>Опис</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var genre in Model)
+            {
+                <tr>
+                    <td>@genre.ID</td>
+                    <td>@genre.Name</td>
+                    <td>@genre.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>За вашим запитом нічого не знайдено</p>
+}

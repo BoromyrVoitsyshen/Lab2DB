@@ -1,0 +1,155 @@
+﻿﻿@{
+    ViewData["Title"] = "Index";
+}
+<h1>Прості запити</h1>
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти усі книги позичені читачем</h6>
+    @using (Html.BeginForm("QueryA1", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <select class="form-control" id="readerId" name="readerId">
+                @foreach (var reader in @ViewBag.Readers)
+                {
+                    <option value="@reader.ID">@reader.Name</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти читачів, які позичили книгу жанру</h6>
+    @using (Html.BeginForm("QueryA2", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <select class="form-control" id="genreId" name="genreId">
+                @if (ViewBag.Genres != null)
+                {
+                    foreach (var genre in ViewBag.Genres)
+                    {
+                        <option value="@genre.ID">@genre.Name</option>
+                    }
+                }
+            </select>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти усі книги видані після</h6>
+    @using (Html.BeginForm("QueryA3", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <input type="int" class="form-control" id="publishingYear" name="publishingYear" required>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти усіх читачів, які позичили книгу</h6>
+    @using (Html.BeginForm("QueryA4", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <select class="form-control" id="bookId" name="bookId">
+                @foreach (var book in @ViewBag.Books)
+                {
+                    <option value="@book.ID">@book.Title</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти книги написані</h6>
+    @using (Html.BeginForm("QueryA5", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <select class="form-control" id="authorId" name="authorId">
+                @foreach (var author in @ViewBag.Authors)
+                {
+                    <option value="@author.ID">@author.Name</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<h1>Складні запити</h1>
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти усіх авторів які написали книги жанрів, що і автор</h6>
+    @using (Html.BeginForm("QueryB1", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <select class="form-control" id="authorId" name="authorId">
+                @foreach (var author in @ViewBag.Authors)
+                {
+                    <option value="@author.ID">@author.Name</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти жанри, які мають книги усіх авторів, які мають книгу жанру</h6>
+    @using (Html.BeginForm("QueryB2", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <select class="form-control" id="genreId" name="genreId">
+                @if (ViewBag.Genres != null)
+                {
+                    @foreach (var genre in @ViewBag.Genres)
+                    {
+                        <option value="@genre.ID">@genre.Name</option>
+                    }
+                }
+            </select>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти усіх читачів, які позичили книги позичені читачем </h6>
+    @using (Html.BeginForm("QueryB3", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; flex-wrap: nowrap; align-items: center;">
+            <select class="form-control" id="readerId" name="readerId">
+                @foreach (var reader in @ViewBag.Readers)
+                {
+                    <option value="@reader.ID">@reader.Name</option>
+                }
+            </select>
+            <span style="display: flex; align-items: center; margin-left: 10px; white-space: nowrap;">
+                <span style="margin-right: 5px;">і щось ще</span>
+            </span>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <h6 style="margin-right: 10px;">Знайти усіх читачів, які позичили книги позичені читачем </h6>
+    @using (Html.BeginForm("QueryB4", "Queries", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group" style="margin-right: 10px; display: flex; align-items: center;">
+            <select class="form-control" id="readerId" name="readerId">
+                @foreach (var reader in @ViewBag.Readers)
+                {
+                    <option value="@reader.ID">@reader.Name</option>
+                }
+            </select>
+            <span style="display: flex; align-items: center; margin-left: 10px; white-space: nowrap;">
+                <span style="margin-right: 5px;">але не всі</span>
+            </span>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Шукати</button>
+        </div>
+    }
+</div>

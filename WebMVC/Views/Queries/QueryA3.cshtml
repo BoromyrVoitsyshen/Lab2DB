@@ -1,0 +1,46 @@
+﻿@using Domain.Entities;
+﻿@{
+    ViewData["Title"] = "QueryA3";
+}
+
+@model IEnumerable<Book>
+
+@if (Model != null && Model.Any())
+{
+    <h2>Search Results</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Книга</th>
+                <th>Назва</th>
+                <th>Автор</th>
+                <th>Автор</th>
+                <th>Видавництво</th>
+                <th>Видавництво</th>
+                <th>Рік видання</th>
+                <th>Жанр</th>
+                <th>Жанр</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.ID</td>
+                    <td>@book.Title</td>
+                    <td>@book.AuthorId</td>
+                    <td>@book.Author</td>
+                    <td>@book.PublisherId</td>
+                    <td>@book.Publisher</td>
+                    <td>@book.PublishingYear</td>
+                    <td>@book.GenreId</td>
+                    <td>@book.Genre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>За вашим запитом нічого не знайдено</p>
+}

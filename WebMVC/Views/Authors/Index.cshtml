@@ -1,0 +1,78 @@
+﻿@model PaginatedList<Domain.Entities.Author>
+
+@{
+    ViewData["Title"] = "Автори";
+}
+
+
+<body>
+<h1>Автори</h1>
+
+<p>
+    <a asp-action="Create">Створити нового</a>
+
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Пошук за іменем: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    <button type="submit" class="btn btn-default color"><img style="scale: 90%;" src="../Images/search.png" alt="Alternate Text" /></button> |
+                    <a asp-action="Index" class="btn btn-default color filter"><img style="scale: 90%;" src="../Images/filter.png" alt="Alternate Text" /></a>
+            </p>
+        </div>
+    </form>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Ім'я</a>
+            </th>
+            <th>
+                Біографія
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Biography)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Редагувати</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Детально</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+    <div class="buttons">
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default color @prevDisabled">
+            <img style="scale: 80%; transform: rotateZ(180deg);" src="../Images/right-arrow.png" alt="arrow" />
+        </a>
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default color @nextDisabled">
+            <img style="scale: 80%;" src="../Images/right-arrow.png" alt="arrow" />
+        </a>
+    </div>
+}
+</body>
